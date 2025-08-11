@@ -56,6 +56,7 @@ https://www.instructables.com/ESP-NOW-Remote-Control/
 
 Prevent it from sleeping based on Home Assistant flags, like when TV is on.
 Maybe have it sleep overnight and wake up at times we expect to use it, but can always be woken up with the power button.
+Use API to send commands from home assistant, maybe set a flag.
 
 ## BLE Presence Detection
 
