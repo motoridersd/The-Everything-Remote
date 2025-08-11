@@ -54,9 +54,34 @@ https://www.instructables.com/ESP-NOW-Remote-Control/
 
 ## Conditional Deep Sleep
 
-Prevent it from sleeping based on Home Assistant flags, like when TV is on.
-Maybe have it sleep overnight and wake up at times we expect to use it, but can always be woken up with the power button.
-Use API to send commands from home assistant, maybe set a flag.
+Created input boolean in Home Asssistant. When it's on, the remote will not sleep, when it's off, it can go into sleep mode based on original timeouts.
+
+Code in ESPHome that tracks the state of the entity in Home Assistant. The remote must be online to read this. Note to self: what is the sate at bootup? Does it sync up when it boots? Probably not by default
+```
+binary_sensor:
+  - platform: homeassistant
+    name: "Remote Prevent Sleep"
+    internal: True
+    id: "prevent_deep_sleep"
+    entity_id: input_boolean.prevent_everyhing_remote_from_sleeping
+```
+
+Updated the interval sleep check to include the boolean/sensor as a condition. If prevent_deep_sleep is on, then the remote will not sleep. I could probably increase the interval to reduce CPU time and also add an immediate deep_sleep when the TV/Media is turned off.
+
+```
+interval:
+  - interval: 60s
+    then:
+      - if:
+          condition:
+            and:
+              - lambda: return (millis() / 1000) - id(last_active) >= 1200;
+              - binary_sensor.is_off: prevent_deep_sleep
+          then:
+            - deep_sleep.enter: deep_sleep_ctrl
+```
+
+This unfortunately would not allow the remote to be ready for controlling non-media entities, like fan speeds and light brightness. I could make changes to force the enter deep sleep at certain hours (say midnight) and wake up at a time when we would usually be in the room. Battery life would probably not be great, but better than being on all the time.
 
 ## BLE Presence Detection
 
