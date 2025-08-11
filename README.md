@@ -60,8 +60,23 @@ Use API to send commands from home assistant, maybe set a flag.
 
 ## BLE Presence Detection
 
-Add code to transmit beacon so the automations follow the room
+Add BLE code to ESPHome Yaml:
 
+```
+esp32_ble_beacon:
+  type: iBeacon
+  uuid: 'generate a random UUID'
+  tx_power: -6
+  min_interval: 
+    milliseconds: 200
+  max_interval: 
+    milliseconds: 500
+```
+
+Increased the min and max interval values because the defaults (100ms according to documentation) were causing WiFi issues. Also reduced the power which is 3 dB by default. The power might have been causing the WiFi issues.
+
+Then added the beacon to Bermuda and now I have a location for the Everything Remote in Home Assistant that can be used in the automations.
+    
 https://esphome.io/components/esp32_ble_beacon.html
 
 # Original project below
