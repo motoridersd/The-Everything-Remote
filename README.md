@@ -2,6 +2,8 @@ Tracking changes and mods made by others.
 
 TurtlePrint's Version
 
+<img width="320" height="240" alt="image" src="https://github.com/user-attachments/assets/996fd145-1fba-4577-886c-c497247fff28" />
+
 https://github.com/TurtlePrint/The-Everything-Remote
 
 Modifications made to the Everything Remote to make it the Ultimate Everything Remote
@@ -10,15 +12,56 @@ Modifications made to the Everything Remote to make it the Ultimate Everything R
 - Removed GPIO15 Button and replaced with a WS2812 LED pixel for notifications (And a built in flash light mode)
 - Added "Continuous Press" mode on specific buttons to enable holding volume up or down
 
-Lost all the changes
+## Media Focused Buttons 
 
-Wireless coil charging
-magnetic dock from makerworld with comments
-Deep Sleep dependent on Home Assistant
-ESP-Now from instructables for possible less battery hungry option
-Longer remote with space for the battery connector
-Comment from Printables on how to do the voltage divider for battery status
-BLE presence detection, add a beacon to the remote https://esphome.io/components/esp32_ble_beacon.html
+<img width="320" height="240" alt="image" src='https://media.printables.com/media/comment_images/ad/0eb20f-a286-4aa6-84be-108b669fa0d8/thumbs/inside/640x480/jpg/pxl_20250717_190036220.webp'>
+
+https://www.tinkercad.com/things/kcJkKT8JOTe-ermediamorebuttons?sharecode=GAdNdrShaN9_7YAmDXliyuxl_ulSDWn8X3fm69BYbjo
+
+## Longer remote with space for the battery connector
+
+<img width="320" height="240" src='https://media.printables.com/media/comment_images/07/0ba722-306f-4198-ae8b-73cc19431648/thumbs/inside/640x480/png/screenshot-2025-07-07-at-55355-pm.webp'>
+
+https://www.printables.com/model/1372638-everything-remote-alternative-base
+
+## Magnetic Charging plug with dock
+
+<img width="320" height="240" src='https://makerworld.bblmw.com/makerworld/model/US41823516ca8590/design/2025-07-06_23b3806ebebd68.jpeg?x-oss-process=image/resize,w_1000/format,webp'>
+
+https://makerworld.com/en/models/1582775-everything-remote-wireless-charging-dock#profileId-1666066
+
+Connector to use [Ali Express Link - Changes often](https://www.aliexpress.us/item/3256807365091703.html?spm=a2g0o.order_list.order_list_main.32.75aa1802etwJLh&)
+
+"240W Magnetic Right Angle USB C Male to USB C Female Adapter 90 Degree PD3.0 Fast Charging Type C Adapter Extender for Iphone"
+
+<img width="240" height="320" alt="image" src="https://github.com/user-attachments/assets/e6fd1650-4a1e-4f33-a2dd-96bd3ae72714" />
+
+## Wireless coil charging
+
+<img width="253" height="360" alt="image" src="https://github.com/user-attachments/assets/fe613c99-513e-469c-af2c-29550e5cfcc1" />
+
+No information of components used: https://www.printables.com/make/2651375
+
+## Battery level reporting with Voltage Divider Circuit
+
+https://www.printables.com/make/2654254/2660187
+
+## ESP-NOW Example with a different remote
+
+Would be nice to make this work with the Everything Remote for very good battery life
+
+https://www.instructables.com/ESP-NOW-Remote-Control/
+
+## Conditional Deep Sleep
+
+Prevent it from sleeping based on Home Assistant flags, like when TV is on.
+Maybe have it sleep overnight and wake up at times we expect to use it, but can always be woken up with the power button.
+
+## BLE Presence Detection
+
+Add code to transmit beacon so the automations follow the room
+
+https://esphome.io/components/esp32_ble_beacon.html
 
 # Original project below
 
