@@ -10,6 +10,16 @@ Modifications made to the Everything Remote to make it the Ultimate Everything R
 - Removed GPIO15 Button and replaced with a WS2812 LED pixel for notifications (And a built in flash light mode)
 - Added "Continuous Press" mode on specific buttons to enable holding volume up or down
 
+Lost all the changes
+
+Wireless coil charging
+magnetic dock from makerworld with comments
+Deep Sleep dependent on Home Assistant
+ESP-Now from instructables for possible less battery hungry option
+Longer remote with space for the battery connector
+Comment from Printables on how to do the voltage divider for battery status
+BLE presence detection, add a beacon to the remote https://esphome.io/components/esp32_ble_beacon.html
+
 # Original project below
 
 # The Everything Remote
