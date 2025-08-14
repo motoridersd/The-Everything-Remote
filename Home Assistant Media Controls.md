@@ -15,7 +15,16 @@ action: androidtv.adb_command
 
 This uses a [script](https://github.com/motoridersd/The-Everything-Remote/blob/main/Find%20Jellyfin%20Media%20ID.script) for looking up the media ID in Jellyfin. The script is called in an automation
 
-Unfortunately I don't remember where I got the script from to give credit. When I do, I'll update this.
+A restful entry needs to be added to the configuration.yaml
+
+```
+rest_command:
+  jellyfin_search:
+    url: "http://{jellyfin_IP}:8096/Items?api_key={user_API_KEY}&searchTerm={{ search_string }}&Recursive=true&IncludeMedia=true&IncludeItemTypes={{ type }}"
+    method: GET
+```
+
+I made this work through information on the Home Assistant Community https://community.home-assistant.io/t/how-to-play-jellyfin-movies-on-nvidia-shield-via-home-assistant-voice/868219/4?u=motoridersd
 
 The script is triggered via an action:
 
