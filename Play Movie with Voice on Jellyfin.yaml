@@ -1,0 +1,38 @@
+alias: Play Jellyfin movie with voice on Nvidia Shield
+description: ""
+triggers:
+  - trigger: conversation
+    command:
+      - play [the] movie {movie_title} in the living room
+      - I want to watch the movie {movie_title} in the living room
+conditions: []
+actions:
+  - set_conversation_response: Playing the movie {{trigger.slots.movie_title}}
+  - action: script.find_jellyfin_media_id
+    metadata: {}
+    data:
+      f_media_type: Movie
+      f_search_string: "{{trigger.slots.movie_title}}"
+    response_variable: jellyfin_media_id
+  - action: media_player.select_source
+    metadata: {}
+    data:
+      source: Jellyfin
+    target:
+      entity_id: media_player.nvidia_shield
+    enabled: false
+  - data:
+      command: >-
+        adb shell am start -c android.intent.category.LEANBACK_LAUNCHER -a
+        android.intent.action.VIEW -d "{{jellyfin_media_id.media_id}}" -e source
+        30 org.jellyfin.androidtv/.ui.startup.StartupActivity
+    target:
+      entity_id: media_player.nvidia_shield
+    action: androidtv.adb_command
+  - action: androidtv.adb_command
+    metadata: {}
+    data:
+      command: input keyevent 126
+    target:
+      entity_id: media_player.nvidia_shield
+mode: single
