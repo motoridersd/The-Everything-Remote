@@ -1,0 +1,37 @@
+alias: Find Jellyfin media ID
+sequence:
+  - data:
+      search_string: "{{ f_search_string }}"
+      type: "{{ f_media_type }}"
+    response_variable: search_result
+    action: rest_command.jellyfin_search
+  - variables:
+      result:
+        media_id: |-
+          {% if search_result.content.TotalRecordCount > 0 %}
+            {{ search_result.content.Items[0].Id }}
+          {% endif %}
+        title: |-
+          {% if search_result.content.TotalRecordCount > 0 %}
+            {{ search_result.content.Items[0].Name }}
+          {% endif %}
+  - stop: Result
+    response_variable: result
+fields:
+  f_search_string:
+    selector:
+      text: null
+    name: Search string
+    required: true
+  f_media_type:
+    selector:
+      select:
+        options:
+          - value: Movie
+            label: Movies
+          - value: Series
+            label: Shows
+    name: Media type
+    required: true
+    default: Movie
+description: ""
